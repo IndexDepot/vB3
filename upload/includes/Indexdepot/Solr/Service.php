@@ -21,8 +21,10 @@
  * @author Vadims Karpuschkins
  * @license LGPL
  */
-require_once (dirname(__FILE__) . '../../Apache/Solr/Service.php');
-require_once (dirname(__FILE__) . '../../Apache/Solr/Exception.php');
+require_once (dirname(__FILE__) . '/../../Apache/Solr/Service.php');
+require_once (dirname(__FILE__) . '/../../Apache/Solr/Exception.php');
+require_once (dirname(__FILE__) . '/../../Apache/Solr/HttpTransport/Curl.php');
+require_once (dirname(__FILE__) . '/../../Indexdepot/Solr/HttpTransport/Curl.php');
 
 class Indexdepot_Solr_Service extends Apache_Solr_Service
 {
@@ -39,11 +41,10 @@ class Indexdepot_Solr_Service extends Apache_Solr_Service
 
     public function __construct($protocol = 'http://', $host = 'localhost', $port = 8180, $path = '/solr/', $username = '', $password = '', $httpTransport = false)
     {
-        parent::__construct($host, $port, $path);
-        
+        parent::__construct($host, $port, $path, new Indexdepot_Solr_HttpTransport_Curl($username, $password, $protocol) );        
         $this->setProtocol($protocol);
-        $this->setUsername($username);
-        $this->setPassword($password);
+//        $this->setUsername($username);
+//        $this->setPassword($password);
     }
     
     public function setProtocol($protocol)
@@ -92,10 +93,10 @@ class Indexdepot_Solr_Service extends Apache_Solr_Service
             $queryString = '';
         }
 
-        if (! empty($this->_username) && ! empty($this->_password)) {
-            return $this->_protocol . $this->_username . ':' . $this->_password . '@' . $this->_host . ':' . $this->_port . $this->_path . $servlet . $queryString;
-        } else {
+//        if (! empty($this->_username) && ! empty($this->_password)) {
+//            return $this->_protocol . $this->_username . ':' . $this->_password . '@' . $this->_host . ':' . $this->_port . $this->_path . $servlet . $queryString;
+//        } else {
             return $this->_protocol . $this->_host . ':' . $this->_port . $this->_path . $servlet . $queryString;
-        }
+//        }
     }    
 }
