@@ -73,4 +73,4 @@
    ```
 * Go to Maintenance and reindex your data
 
-** If you do not have a Solr Server you can visit us at [www.indexdepot.com](https://www.indexdepot.com/ "Visit us for your own Solr search index") to get your own Solr search index. **
+**If you do not have a Solr Server you can visit us at [www.indexdepot.com](https://www.indexdepot.com/ "Visit us for your own Solr search index") to get your own Solr search index.**
